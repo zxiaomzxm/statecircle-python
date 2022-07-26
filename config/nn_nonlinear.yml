@@ -1,0 +1,37 @@
+TRACKER:
+  name: nn nonlinear
+  type: statecircle.trackers.sot.nearest_neighbour_tracker.NearestNeighbourTracker
+
+  # basic components
+  BIRTH_MODEL:
+    type: statecircle.models.birth.base.SingleObjectBirthModel
+    birth_cov: <np.diag(np.array([1, 1, 1, 1*np.pi/180, 1*np.pi/180])**2)>
+    initial_state: <[0, 0, 10, 0, np.pi/180]>
+
+  DENSITY_MODEL:
+    type: statecircle.models.density.kalman.KalmanDensityModel
+
+  TRANSITION_MODEL:
+    type: statecircle.models.transition.nonlinear.SimpleCTRVModel
+    sigma_vel: 1
+    sigma_omega: <np.pi/180>
+
+  MEASUREMENT_MODEL:
+    type: statecircle.models.measurement.nonlinear.RangeBearningMeasurementModel
+    sigma_range: 5
+    sigma_bearing: <np.pi/180>
+    origin: [300, 400]
+
+  CLUTTER_MODEL:
+    type: statecircle.models.measurement.clutter.PoissonClutterModel
+    detection_rate: 0.9
+    lambda_clutter: 20 # expectation number of clutter per frame
+    scope: <[[0, 1000], [-np.pi, np.pi]]>
+
+  GATE:
+    type: statecircle.reductor.gate.EllipsoidalGate
+    percentile: 0.999
+
+  ESTIMATOR:
+    type: statecircle.estimator.base.EAPEstimator
+

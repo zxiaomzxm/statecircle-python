@@ -1,0 +1,42 @@
+TRACKER:
+  name: gs linear
+  type: statecircle.trackers.sot.gaussian_sum_tracker.GaussianSumTracker
+
+  # basic components
+  BIRTH_MODEL:
+    type: statecircle.models.birth.base.SingleObjectBirthModel
+    birth_cov: <np.eye(4)>
+    initial_state: [0, 0, 10, 10]
+
+  DENSITY_MODEL:
+    type: statecircle.models.density.kalman.KalmanDensityModel
+
+  TRANSITION_MODEL:
+    type: statecircle.models.transition.linear.ConstantVelocityModel
+    sigma: 5
+
+  MEASUREMENT_MODEL:
+    type: statecircle.models.measurement.linear.LinearMeasurementModel
+    mapping: [1, 1, 0, 0]
+    sigma: 10
+
+  CLUTTER_MODEL:
+    type: statecircle.models.measurement.clutter.PoissonClutterModel
+    detection_rate: 0.9
+    lambda_clutter: 20 # expectation number of clutter per frame
+    scope: [[0, 1000], [0, 1000]]
+
+  GATE:
+    type: statecircle.reductor.gate.EllipsoidalGate
+    percentile: 0.999
+
+  ESTIMATOR:
+    type: statecircle.estimator.base.EAPEstimator
+    
+  REDUCTOR:
+    type: statecircle.reductor.hypothesis_reductor.HypothesisReductor
+    weight_min: 0.001
+    merging_threshold: 2 
+    capping_num: 100
+    
+
