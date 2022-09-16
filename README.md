@@ -20,7 +20,7 @@
 - 高斯和状态(`GaussianSumState`)：描述一个为高斯和形式的强度函数，包含一组权重以及对应的高斯状态属性
 - 高斯混合状态(`GaussianMixtureState`)：描述一个为高斯混合形式的密度函数，包含一组权重(权重之和为1)以及对应的高斯状态属性
 - 无迹状态(`UnscentedState`)：描述无迹变换下的高斯分布表示，在无迹共轭密度模型`UnscentedKalmanDensity`中被使用
-- (TODO)粒子状态(`ParticleState`)：描述任意分布的粒子表示，在粒子共轭密度`ParticleDensity`中被使用
+- 粒子状态(`ParticleState`)：描述任意分布的粒子表示，在粒子共轭密度`ParticleDensity`中被使用
 
 #### 随机有限集(Random finite sets)状态
 - 伯努利状态(`BernoulliState`)：包含存在概率`prob`以及一个密度/强度状态`state`，表示伯努利随机有限集
@@ -49,8 +49,8 @@
 - 卡尔曼密度模型(`KalmanDensityModel`)：用于线性高斯模型假设，卡尔曼滤波组件
 - 扩展卡尔曼密度模型(`KalmanDensityModel`)：用于非线性程度不高的模型假设，扩展卡尔曼滤波组件
 - 卡尔曼累计密度模型(`KalmanAccumulatedDensityModel`)：对累计密度函数进行估计，平滑输出轨迹
-- (TODO)无迹卡尔曼密度模型(`UnscenetedKalmanDensityModel`)：用于非线性模型假设，无迹卡尔曼滤波组件
-- (TODO)粒子密度模型(`ParticleDensityModel`)：用于任意非线性模型假设，粒子滤波组件
+- 无迹卡尔曼密度模型(`UnscenetedKalmanDensityModel`)：用于非线性模型假设，无迹卡尔曼滤波组件
+- 粒子密度模型(`ParticleDensityModel`)：用于任意非线性模型假设，粒子滤波组件
 
 #### (*)出生模型(`BirthModel`)
 描述物体出现，分为：
